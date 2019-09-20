@@ -1,0 +1,29 @@
+{
+  "name": "orders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "orders.ts",
+  "scripts": {
+    "start": " ts-node orders.ts",
+    "start:watch": "nodemon ",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongodb": "^3.3.1",
+    "@types/mongoose": "^5.5.17",
+    "amqplib": "^0.5.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "eslint": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}

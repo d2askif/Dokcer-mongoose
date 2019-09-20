@@ -1,0 +1,49 @@
+version: "2.3"
+
+services:
+  server_book:
+    build:
+      context: books
+      target: base
+    ports:
+      - 8001:4545
+    environment:
+      - NODE_ENV=development
+      - CLOUDAMQP_URL=amqp://guest:guest@rabbitmq
+    volumes:
+      - ./books:/app:delegated
+  server_order:
+    build:
+      context: orders
+      target: base
+    ports:
+      - 8002:3000
+    environment:
+      - NODE_ENV=development
+      - CLOUDAMQP_URL=amqp://guest:guest@rabbitmq
+    volumes:
+      - ./orders:/orders:delegated
+
+  # rabbitmq:
+  #   image: rabbitmq:3.7-management-alpine
+  #   ports:
+  #     - 15672:15672
+  #     - 5672:5672
+  #   hostname: rabbitmq
+  #   volumes:
+  #     - rabbitmq-volume:/var/lib/rabbitmq/mnesia/rabbit@rabbitmq
+
+  mongodb:
+    image: mongo:3.6
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - mongodb-volume:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --smallfiles
+
+volumes:
+  mongodb-volume:
+  rabbitmq-volume:
